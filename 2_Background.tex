@@ -1,4 +1,271 @@
-\section{Background}
+\section*{Background}
+
+Character-based phylogeny is a broad notion to represent an evolutionary history
+describing the ancestral relationships among extant taxa or individuals. Recent applications show that
+the model can be applied to study the evolution of mutations related to various genomic information, such as protein domains~\cite{Pr1} or markers in tumors.
+Thus in  our formulation, it is not important whether we are actually studying taxa or
+individuals or other genomic data.
+We will follow the usual convention of calling
+\emph{species} the units of study.
+The main element of this notion is that the instance is also made of
+a set of \emph{characters}, and each species is in a specific state for each character~\cite{Gusfield}.
+The goal is to find a phylogeny where the known species are the leaves, and the
+internal nodes are labeled---just as the leaves---by a state for each character.
+For each edge $(x,y)$ of the phylogeny, the mutated characters along the edge are those whose
+states are different in $x$ and $y$. The simplest case is when all characters are binary, that is only two states
+($0$ and $1$) are possible,
+modeling the situation  when each species has or not a given feature, such as
+wings (a phenotypical trait) or the mutation encoding lactase persistence (a
+genotypical trait).
+
+Moreover, we are assuming a coalescent model, that is the fact that a characteristic
+shared by a set of species can be traced back to a single ancestral species.
+Assuming that the state $1$ encodes the fact that a species has a given
+character (for example, the fact that the species has acquired a given mutation), the coalescent
+model implies that the phylogeny is directed.
+% and the label of the root is
+% $\vec{0}$, and $(ii)$ for each character $c$ there is at most an edge $(x,y)$
+% where $y$ is a child of $x$, and the state of $c$ in $x$ is $0$, but it is $1$
+% in $y$.
+Restrictions on the type of changes from zero to one and vice versa lead to a variety of specific models~\cite{felsenstein:inferring-phylogenies}.
+
+
+
+
+The perfect phylogeny is one of the most investigated coalescent models~\cite{Gusfield}.
+Conceptually the  model is based on the infinite sites assumption, that is no
+character can mutate more than once in the whole tree.
+The binary perfect phylogeny problem has received much attention, culminating
+the linear time algorithm when all data is known~\cite{Gus91} and an efficient
+algorithm when the input data is incomplete~\cite{Sha}.
+While the infinite sites assumption is quite restrictive, the perfect phylogeny model
+turned out to be splendidly coherent within the haplotyping problem~\cite{bo4,Gus02}, where we want to distinguish the two
+haplotypes present in each individual when given only genotype data.
+More precisely, the interest here is in computing a set of haplotypes and a perfect phylogeny such that the haplotypes
+(i) label the vertices of the perfect phylogeny and (ii) explain the input set of genotypes.
+This context has been deeply studied in the last decade, giving rise to a number of   algorithms~\cite{Boniz,Gus06}.
+%
+Still, the perfect phylogeny model and the assumptions that have been central in
+the previous decades cannot be employed without adaptations or improvements.
+A first generalization in the literature allows for more states
+(but keeping the infinite sites assumption).
+In the general case, the problem is NP-hard~\cite{BFW92}, but it has
+an algorithm parameterized by the number of
+states~\cite{DBLP:journals/siamcomp/Fernandez-BacaL03,kannan1997fast}.
+The special cases when there are three or four possible states have more
+efficient algorithms~\cite{dress1992convex,kannan1994inferring,gysel2012constructing}.
+
+
+Even allowing more states cannot explain the biological complexity of
+real data, when homoplasy events (such as recurrent mutations or back
+mutations) are present.
+Two cases where those limitations are evident are the study of carcinogenesis
+and of protein domains.
+Carcinogenesis consists of the factors
+and mechanisms that cause the onset of cancer; it
+results from many combinations of mutations, but only a few, called progression
+pathways, seem to account for most human tumors~\cite{subramanian2012inference}.
+The observation that tumors are evolving cell populations leads to phylogeny-based
+studies. At the same time the intrinsic nature of quickly and degenerately
+proliferating cancer cells, results in a relative high amount of sites with
+multiple mutations (i.e., in violations of the infinite sites assumption).
+A protein domain is
+a part of protein sequence and structure that can evolve independently of the
+rest of the protein chain. Many proteins consist of several structural
+domains, while a domain may appear in a variety of different proteins. In this case
+it is quite frequent to acquire a domain and then to lose it~\cite{przytycka2006graph}.
+
+Thus a central goal of this paper  is to find a model that is more
+widely applicable than the perfect phylogeny, while retaining  its computational
+efficiency (in fact, more general models such as the Dollo and the Camin-Sokal
+models are NP-hard~\cite{felsenstein:inferring-phylogenies}).
+The problem of constructing  phylogenies where the deviations from perfect phylogeny are  small
+has been tackled under the name of near perfect
+phylogeny~\cite{DBLP:journals/siamcomp/Fernandez-BacaL03} or near perfect
+phylogeny  haplotyping  problems~\cite{DBLP:conf/ismb/SatyaMAPB06}.
+Especially the impossibility of losing a character that has been previously
+acquired is too restrictive, resulting in more elaborated models,
+such as the persistent character~\cite{Pr1} and the General Character
+Compatibility~\cite{DBLP:conf/isbra/ManuchPG11,mavnuch2009generalised}.
+
+More precisely, the  Persistent Perfect Phylogeny
+model~\cite{DBLP:journals/tcs/BonizzoniBDT12} allows each character to be lost
+(\ie{} going from state $1$ to $0$) in at most an edge of the phylogeny, while the
+General Character Compatibility imposes some restrictions on the possible
+mutations (that is on the possible states labeling the endpoints of an edge),
+while allowing the input data to be a set of possible states for each character
+of a species.
+
+We present some new computational problems that can model the problem
+of finding the smallest subset of input data that must be removed to
+obtain a dataset that is compatible with a given topology.
+
+
+
+
+\subsection*{The persistent perfect phylogeny}
+
+Our approach follows~\cite{DBLP:journals/tcs/BonizzoniBDT12} to which we refer
+the reader for a detailed discussion of PPP, while we give here
+only a cursory treatment.
+The input of the PPP problem is an  $n \times m$ binary matrix $M$ whose
+columns are associated with the set $C  = \{c_1, \ldots,
+c_m\}$ of characters and whose rows are associated with the set $S = \{s_1, \dots,
+s_n\}$ of species.
+Then $M[i,j] = 1$ if and
+only if the species $s_i$ has character $c_j$, otherwise $M[i,j] = 0$.
+The character $c$ is \emph{gained} in the only edge where its state goes from $0$ to
+$1$ or, more formally, in the edge $(x,y)$ such that $y$ is a child of $x$ and
+the $c$ has state $0$ in $x$ and state $1$ in $y$.
+In this case the edge $(x,y)$ is labeled by $c^{+}$.
+Conversely, $c$ is \emph{lost} in the edge $(x,y)$ if $y$ is a child of $x$ and
+the $c$ has state $1$ in $x$ and state $0$ in $y$.
+In the latter case the edge $(x,y)$ is labeled by $c^{-}$.
+For each character $c$, we allow at most one edge labeled by $c^{-}$~\cite{zeng,DBLP:journals/tcs/BonizzoniBDT12}.
+% \vspace{.1in}
+% \noindent
+
+\begin{definition}[Persistent Perfect Phylogeny]
+\label{def:persistent-perfect-phylogeny}
+Let $M$ be an  $n \times m$ binary matrix.
+Then a \emph{persistent perfect phylogeny}, in short  \emph{ p-pp},
+for $M$ is a rooted tree $T$ such that:
+\begin{enumerate}
+\item each node $x$ of $T$ is labeled by a vector $l_x$ of length $m$;
+\item
+  the root of $T$ is labeled by a vector of all zeroes,  while  for each  node
+$x$ of $T$ the value $l_x[j]\in\{0, 1\}$
+  represents the state of character $c_j$ in tree $T$;
+\item
+  each edge $e=(v,w)$ is labeled by at least a character;
+\item
+  for each character $c_j$ there are at most  two  edges $e=(x,y)$ and
+$e'=(u,v)$
+  such that $l_x[j] \neq l_y[j]$ and $l_u[j] \neq l_v[j]$
+  (representing a change in the state of $c_j$).
+In that case $e$, $e'$  occur along the same path
+  from the root of $T$ to a leaf of $T$; if $e$ is closer to the root than $e'$,
+  then $l_x[j]=l_v[j]=0$, $l_y[j]=l_u[j]=1$, and
+  the  edge $e$ is labeled $c_j^{+}$,
+  while  $e'$ is labeled $c_j^{-}$;
+\item
+  each row $r$ of $M$ labels exactly one node $x$ of $T$.
+  Moreover the vector $l_{x}$ is equal to the row $r$.
+\end{enumerate}
+%Then we say that $T$ \emph{realizes} matrix $M$, that is $M$ admits a p-pp tree.
+%Whenever  a binary matrix $M$ admits a p-pp tree we say  that $M$ is \emph{solvable}.
+\end{definition}
+
+Let $s$ be a species and let $c$ be a character such that, in a persistent
+perfect phylogeny $T$, the path from the root of $T$ to $s$ traverses an edge
+labeled $c^{-}$.
+Then $c$ is called persistent for $s$ in $T$.
+
+The Persistent Perfect Phylogeny problem asks to find, if it exists, a
+persistent perfect phylogeny for a given binary matrix $M$.
+We can restate the PPP  problem  as a
+variant  of the Incomplete Directed Perfect Phylogeny~\cite{Sha} by transforming
+the complete input matrix into an incomplete matrix, called extended matrix.
+
+\begin{definition}[Extended Matrix]
+\label{def:Extended-Matrix}
+Let $M$ be an instance of the PPP problem. The \emph{extended matrix}
+associated with $M$ is an ${n \times 2m}$ matrix \me  over alphabet $\{0,1,?\}$
+which is obtained by replacing each column $c$ of $M$ by a pair of columns
+$(c^{+}, c^{-})$, where $?$ means that the value of such cell is not given.
+Moreover for each   row $s$  of $M$
+% \begin{enumerate}
+% \item
+if $M[s,c] = 1$, then  $M_e[s,c^{+}] = 1$ and $M_e[s,c^{-}] = 0$,
+% \item
+while if $M[s,c] = 0$, then  $M_e[s,c^{+}] = ?$ and $M_e[s,c^{-}] = ?$.
+% ,
+% otherwise $M_e[s,c^{+}] =0$ and $M_e[s,c^{-}] = 0$.
+% \end{enumerate}
+\end{definition}
+
+% \begin{figure}[htbp]
+% %\subfigure[A binary  matrix $M$ and the extended matrix of size $n \times 2m$]
+% \begin{center}
+% \includegraphics[width=0.90\textwidth]{M_Me}
+% \end{center}
+% \caption{A binary  matrix $M$ and the extended matrix of size $n \times 2m$}
+% \label{fig:standard-tree2}
+% \end{figure}
+
+
+In this case the characters $(c^{+}, c^{-})$ are called conjugate.
+Informally, the assignment of the \emph{conjugate} pair $(?,?)$ in a species
+row $s$ for two conjugate characters ($c^{+}, c^{-}$) means that
+character $c$ could be persistent in species $s$, \ie it is first gained and
+then lost.
+On the contrary, the pair $(1,0)$ means that character $c$ is only gained by
+the species $s$.
+% Finally, the pair $(0,0)$ means that character $c$ is never  gained  by
+% the species $s$.
+A \emph{completion}  of  a pair $(?,?)$  associated to a species $s$ and
+characters ($c^{+}, c^{-}$) of  \me  consists
+of forcing $\me [c^{+},s]=\me [c^{-},s]=0$ or  $\me [c^{+},s]=\me [c^{-},s]=1$,
+while a partial \emph{completion}  \me is a completion of some of its conjugate
+pairs.
+% A completion is \emph{full} if all its conjugate pairs are completed.
+Notice that $M$ admits a persistent phylogeny  if
+and only if there exists a completion  of $M_e$ admitting a directed perfect
+phylogeny~\cite{DBLP:journals/tcs/BonizzoniBDT12}.
+
+
+ %\begin{comment}
+
+
+%\end{comment}
+
+A fundamental contribution of~\cite{DBLP:journals/tcs/BonizzoniBDT12}, building
+upon~\cite{Sha}, is to frame the problem as a graph theory question.
+We briefly recall here the two graphs that are used in the description of the algorithm.
+
+
+Let $M$ be a binary matrix and let $c_{1}$, $c_{2}$ be two characters of $M$.
+Then the configurations induced by the pair $( c_{1}, c_{2} )$ in $M$ is the
+set of ordered pairs $( M[s,c_{1}], M[s,c_{2}])$ over all species $S$.
+Two characters $c_{1}$ and $c_{2}$ of $M$ are \emph{conflicting} if and only if
+the configurations induced by such pair
+of columns is the set of all possible pairs $( 0,1)$, $( 1,1) $, $(1,0) $ and
+$( 0,0) $.
+The \emph{conflict graph}  $G_c =( C,E_{c}\subseteq C \times C)$ of a matrix $M$
+has vertices $C$ and as edges the pairs $(c_{i}, c_{j})$ of conflicting characters (see Figure~\ref{fig:standard-tree}).
+%
+We also need some graph-theoretic definitions.
+A graph without edges is called \emph{edgeless}.
+A connected component is called \emph{nontrivial} if it has more than one
+vertex.
+
+
+%\begin{figure}[htbp]
+%\begin{center}
+%\includegraphics[width=0.50\textwidth]{m_Gc_p-pp_colored}
+%\end{center}
+
+%\caption{A matrix and its conflict graph}
+%\label{fig:standard-tree}
+%\end{figure}
+
+
+
+
+The second graph used in the algorithm provides a representation of a  completion of characters of an extended matrix.
+The \emph{red-black graph} $\grb=\langle V,E \rangle$  associated to an extended matrix \me
+is the edge-colored graph where (i)
+the vertices are the species and the conjugate pairs of \me (that is
+for each two conjugate
+characters $c^{+}$ and $c^{-}$, only $c$ is a vertex of \grb), (ii) a pair $(s,c)$
+is a black edge iff the conjugate pairs
+$c^{+}$ and $c^{-}$ are still incomplete in matrix \me and
+$M_e[s,c^{+}]=1$ and
+$M_e[s,c^{-}]=0$, (iii)
+$(s,c)$ is a red edge iff the conjugate pairs
+$c^{+}$ and $c^{-}$ are completed as $M_e[s,c^{+}]=M_e[s,c^{-}]=1$.
+
+
 
 
 
