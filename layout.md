@@ -2,4 +2,4 @@
 2_Background.tex
 3_Minimum_Column_Removal_The__.tex
 section_Minimum_Matrix_Editing_The__.tex
-section_Minimum_Matrix_Removal_The__.tex
+5_Minimum_Matrix_Removal.tex
