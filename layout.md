@@ -1,1 +1,1 @@
-fixed-topology-persistent.tex
+paper.tex
