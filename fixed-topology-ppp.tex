@@ -1,65 +1,245 @@
-\documentclass{scrartcl}
-\pdfoutput=1
-% \usepackage[utf8]{inputenc}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{amssymb}
-\usepackage{float}
-\usepackage[algoruled,linesnumbered,noend]{algorithm2e}
-\usepackage{relsize}
-\newcommand{\mycommentsty}[1]{{\relsize{-1}\texttt{\textls[-10]{#1}}}}
-\SetCommentSty{mycommentsty}
-% \usepackage{enumitem}
-\usepackage{cite}
-\usepackage{multirow}
-\usepackage{url}
-\usepackage{xspace}
+%% BioMed_Central_Tex_Template_v1.06
+%%                                      %
+%  bmc_article.tex            ver: 1.06 %
+%                                       %
+
+%%IMPORTANT: do not delete the first line of this template
+%%It must be present to enable the BMC Submission system to
+%%recognise this template!!
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                     %%
+%%  LaTeX template for BioMed Central  %%
+%%     journal article submissions     %%
+%%                                     %%
+%%          <8 June 2012>              %%
+%%                                     %%
+%%                                     %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                 %%
+%% For instructions on how to fill out this Tex template           %%
+%% document please refer to Readme.html and the instructions for   %%
+%% authors page on the biomed central website                      %%
+%% http://www.biomedcentral.com/info/authors/                      %%
+%%                                                                 %%
+%% Please do not use \input{...} to include other tex files.       %%
+%% Submit your LaTeX manuscript as one .tex document.              %%
+%%                                                                 %%
+%% All additional figures and files should be attached             %%
+%% separately and not embedded in the \TeX\ document itself.       %%
+%%                                                                 %%
+%% BioMed Central currently use the MikTex distribution of         %%
+%% TeX for Windows) of TeX and LaTeX.  This is available from      %%
+%% http://www.miktex.org                                           %%
+%%                                                                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% additional documentclass options:
+%  [doublespacing]
+%  [linenumbers]   - put the line numbers on margins
+
+%%% loading packages, author definitions
+
+%\documentclass[twocolumn]{bmcart}% uncomment this for twocolumn layout and comment line below
+\documentclass{bmcart}
+
+%%% Load packages
+%\usepackage{amsthm,amsmath}
+%\RequirePackage{natbib}
+%\RequirePackage{hyperref}
+\usepackage[utf8]{inputenc} %unicode support
+%\usepackage[applemac]{inputenc} %applemac support if unicode package fails
+%\usepackage[latin1]{inputenc} %UNIX support if unicode package fails
+
 \usepackage{graphicx}
-\usepackage{microtype}
-\usepackage[affil-it]{authblk}
-% REMOVE BEFORE SUBMISSION - begin part
+\usepackage[space]{grffile}
+\usepackage{latexsym}
+\usepackage{amsfonts,amsmath,amssymb,amsthm}
+\usepackage{url}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\hypersetup{colorlinks=false,pdfborder={0 0 0}}
+\usepackage{textcomp}
+\usepackage{longtable}
 \usepackage{verbatim}
-\setlength{\marginparwidth}{1em}
-\setlength{\marginparsep}{2ex}
-\usepackage{textcomp}\usepackage{xcolor}
-\usepackage{tikz}
-\usetikzlibrary{shapes,arrows}
-\usetikzlibrary{decorations}
-\usetikzlibrary{positioning,patterns}
-
-
-\newcommand{\mathfrc}[1]{\text{\fontfamily{frc}\selectfont#1}}
-
-\usepackage{booktabs}
-\newcommand{\otoprule}{\midrule[\heavyrulewidth]}
-\newcommand{\lmidrule}{\midrule[.5\heavyrulewidth]}
+\usepackage{xspace}
 \usepackage{tabularx}
-\newcolumntype{W}{>{\raggedleft\arraybackslash}X}
-\newcolumntype{C}{>{\centering\arraybackslash}X}
-\usepackage{array}
+\usepackage{multirow,booktabs}
 
-
-\DeclareMathOperator{\pop}{pop}
-
-\begin{document}
 \input{header}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                             %%
+%%  If you wish to display your graphics for   %%
+%%  your own use using includegraphic or       %%
+%%  includegraphics, then comment out the      %%
+%%  following two lines of code.               %%
+%%  NB: These line *must* be included when     %%
+%%  submitting to BMC.                         %%
+%%  All figure files must be submitted as      %%
+%%  separate graphics through the BMC          %%
+%%  submission process, not included in the    %%
+%%  submitted article.                         %%
+%%                                             %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Commenting these so that images appear
+%\def\includegraphic{}
+%\def\includegraphics{}
+
+% if your bibliography is in bibtex format, use those commands:
+\bibliographystyle{bmc-mathphys} % Style BST file
+
+%%% Begin ...
+\begin{document}
+
+%%% Start of article front matter
+\begin{frontmatter}
+
+\begin{fmbox}
+\dochead{Research}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% Enter the title of your article here     %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{Fixed-Topology Persistent Phylogeny}
 
-\author{Gianluca Della Vedova}
-\affil{Affiliation not available}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% Enter the authors here                   %%
+%%                                          %%
+%% Specify information, if available,       %%
+%% in the form:                             %%
+%%   <key>={<id1>,<id2>}                    %%
+%%   <key>=                                 %%
+%% Comment or delete the keys which are     %%
+%% not used. Repeat \author command as much %%
+%% as required.                             %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\date{\today}
+\author[
+   addressref={aff1},                   % id's of addresses, e.g. {aff1,aff2}
+   email={bonizzoni@disco.unimib.it}   % email address
+]{Paola Bonizzoni}
 
-\bibliographystyle{plain}
+\author[
+   addressref={aff1},                   % id's of addresses, e.g. {aff1,aff2}
+   email={annapaola.carrieri@disco.unimib.it}   % email address
+]{Anna Paola Carrieri}
 
-\maketitle
+\author[
+   addressref={aff1},                   % id's of addresses, e.g. {aff1,aff2}
+   email={gianluca.dellavedova@unimib.it}   % email address
+]{Gianluca Della Vedova}
+
+\author[
+   addressref={aff1},                   % id's of addresses, e.g. {aff1,aff2}
+   email={rizzi@disco.unimib.it}   % email address
+]{Raffaella Rizzi}
+
+\author[
+   addressref={aff2},                   % id's of addresses, e.g. {aff1,aff2}
+   email={gabriella.trucco@unimi.it}   % email address
+]{Gabriella Trucco}
+
+\address[id=aff1]{DISCo, Univ. Milano-Bicocca}
+\address[id=aff2]{DI, Univ. Milano}
 
 
-  \input{1_paper}
-  \input{2_Background}
-  \input{3_Minimum_Column_Removal}
-  \input{4_Minimum_Matrix_Editing}
-  \input{5_Minimum_Matrix_Removal}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% Enter short notes here                   %%
+%%                                          %%
+%% Short notes will be after addresses      %%
+%% on first page.                           %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{artnotes}
+%\note{Sample of title note}     % note to the article
+%\note[id=n1]{Equal contributor} % note, connected to author
+%\end{artnotes}
+
+\end{fmbox}% comment this for two column layout
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% The Abstract begins here                 %%
+%%                                          %%
+%% Please refer to the Instructions for     %%
+%% authors on http://www.biomedcentral.com  %%
+%% and include the section headings         %%
+%% accordingly for your article type.       %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstractbox}
+
+
+\input{0_abstract}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% The keywords begin here                  %%
+%%                                          %%
+%% Put each keyword in separate \kwd{}.     %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{keyword}
+%\kwd{sample}
+%\kwd{article}
+%\kwd{author}
+%\end{keyword}
+
+% MSC classifications codes, if any
+%\begin{keyword}[class=AMS]
+%\kwd[Primary ]{}
+%\kwd{}
+%\kwd[; secondary ]{}
+%\end{keyword}
+\end{abstractbox}
+%
+%\end{fmbox}% uncomment this for twcolumn layout
+\end{frontmatter}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% The Main Body begins here                %%
+%%                                          %%
+%% Please refer to the instructions for     %%
+%% authors on:                              %%
+%% http://www.biomedcentral.com/info/authors%%
+%% and include the section headings         %%
+%% accordingly for your article type.       %%
+%%                                          %%
+%% See the Results and Discussion section   %%
+%% for details on how to create sub-sections%%
+%%                                          %%
+%% use \cite{...} to cite references        %%
+%%  \cite{koon} and                         %%
+%%  \cite{oreg,khar,zvai,xjon,schn,pond}    %%
+%%  \nocite{smith,marg,hunn,advi,koha,mouse}%%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%% start of article main body
+% <put your article body there>
+
+
+
+\input{2_Background}
+\input{3_Minimum_Column_Removal}
+\input{4_Minimum_Matrix_Editing}
+\input{5_Minimum_Matrix_Removal}
 
 \end{document}
