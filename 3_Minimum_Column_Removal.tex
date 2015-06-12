@@ -1,8 +1,69 @@
-\section{Results and discussion}
+\section*{Results and discussion}
 
-\subsection{Minimum Column Removal}
+A simple formulation of our problem assumes that we have in input a
+topology $T$ with $n$ leaves and a matrix $M$ with $n$ rows.
+In this case we already know that the species of $M$ labels the leaves
+of $T$.
+The only allowed modification to the matrix $M$ is to remove some columns.
+We have three different formulation of the problem according to the
+fact that we want a perfect phylogeny, a persistent phylogeny or a
+species-driven phylogeny.
 
-The problem of removing some columns so that the remaining columns have a perfect phylogeny has been widely studied in the literature (cit. Tomescu) and is is usually modeled as finding an independent set of the conflict graph.
+
+\subsection*{Minimum Column Removal}
+
+In this paper we will consider only trees where the leaves are labeled
+by the species, and no other node is labeled.
+We will also allow only one character to label each edge of the tree.
+
+
+
+
+
+The problem of removing some columns so that the remaining columns
+have a perfect phylogeny has been widely studied in the
+literature~\cite{rens_snv-ppilp:_2015} and is is usually  modeled as
+finding an independent set of the conflict graph.
+This approach relies on the fundamental characterization of matrices
+that admit a perfect phylogeny as the matrices satisfying the 4-gamete test.
+On one hand, reducing to an NP-hard problem does not lead to a
+polynomial-time algorithm, but several exponential-time but practical
+algorithms for independent set are known.
+
+\begin{definition}
+\label{definition:perfect-problem}
+Given a $n\times m$ matrix $M$ and a tree $T$ with $n$ leaves, the
+\emph{Minimum Column Removal Fixed-Topology Perfect Phylogeny} (Min
+C-Perf) problem asks for a smallest set $X$ of columns of $M$ such
+that removing $X$ from $M$ results in a matrix that is realized by a
+perfect phylogeny on $T$.
+\end{definition}
+
+
+The Min C-Perf problem is APX-hard~\cite{ausiello_approximate_1995}
+(that is, not only it is NP-hard
+but it cannot be solved within an arbitrarily small approximation
+ratio by a polynomial-time algorithm).
+
+We sketch here a reduction from Min Independent Set on cubic graphs,
+which is already known to be APX-hard~\cite{alimonti_apx-completeness_2000}.
+Let $G=(V,E)$ be a cubic graph.
+Then $M$ is a matrix that has a row made entirely of zeroes, and for
+each arc $(v_{i}, v_{j})$ of $G$ there are three rows $r_{i,j,01}$,
+$r_{i,j,10}$, $r_{i,j,11}$, where  $r_{i,j,01}$ is made of zeroes,
+except for character $c_{j}$,
+$r_{i,j,10}$  is made of zeroes,
+except for character $c_{i}$, and $r_{i,j,11}$  is made of zeroes,
+except for characters $c_{i}$ and $c_{j}$.
+The resulting matrix has $|V|$ characters and $3|V|+1$ rows.
+It is immediate to notice that each pair of characters $(c_{i},
+c_{j})$ are conflicting, while no other pairs of characters are conflicting.
+Each column of $M$ contains exactly $4$ ones, therefore a tree $T$
+consisting of a root and a bunch for $4$-long paths realized the
+remaining columns of $M$.
+
+
+
 
 In the case of persistent phylogeny this approach cannot be used since there is no induced submatrix.
 
@@ -87,7 +148,7 @@ Since both components have an edge, they are nontrivial.
 
 
 
-\subsection{A characterization of matrices without a pp tree solution}
+\subsection*{A characterization of matrices without a pp tree solution}
 
 
 Now, given
@@ -161,7 +222,7 @@ phylogeny.
 
 
 
-\subsection{Examples}
+\subsection*{Examples}
 
 The following matrix $\mathcal M$ admits a pp tree but has no path-sequence.
 
