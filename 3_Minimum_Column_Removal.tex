@@ -161,35 +161,32 @@ phylogeny.
 
 \subsection{Examples}
 
-The following matrix $M$ admits a pp tree but has no path-sequence.
+The following matrix $\mathcal M$ admits a pp tree but has no path-sequence.
 
-\begin{figure}[htbp]
-$$
-     {\mathcal M} =
-     \begin{array}{c|cccccccccccccccc}
-     s/c & c_1 & c_2 & c_3 & c_4 & c_5 & c_6 & c_7 & c_8 & c_9 & c_{10} &
-c_{11} & c_{12} & c_{13} & c_{14} & c_{15} & c_{16}\\
-     \hline
-     1 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-	 2 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
-	 3 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
-	 4 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
-	 5 & 1 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
-	 6 & 1 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
-	 7 & 0 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
-	 8 & 0 & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
-      \end{array}
-$$
-\caption{A binary matrix  $M$ of size  $8 \times 16$ admitting a persistent
-tree}
-\label{fig:matAmmetteP-pp}
-\end{figure}
+\begin{table}
+\centering
+\begin{tabularx}{1.0\linewidth}[c]{c|cccccccccccccccc}
+    $s/c$ & $c_1$ & $c_2$ & $c_3$ & $c_4$ & $c_5$ & $c_6$ & $c_7$ & $c_8$ & $c_9$ & $c_{10}$ &
+$c_{11}$ & $c_{12}$ & $c_{13}$ & $c_{14}$ & $c_{15}$ & $c_{16}$\\\hline
+1 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+2 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+3 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+4 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+5 & 1 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+6 & 1 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+7 & 0 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+8 & 0 & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+\end{tabularx}
+\caption{A binary matrix  $\mathcal M$ on $8$ species and $16$
+  characters that has a persistent phylogeny, but no species-driven phylogeny}
+\label{table:matAmmetteP-pp}
+\end{table}
+
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[height=10cm, width=8cm,keepaspectratio]{GrafoConflitti1}
-\caption{Conflict graph associated to the matrix  $M$ given in Fig.
-\ref{fig:matAmmetteP-pp} }
+\caption{Conflict graph associated to the matrix  $M$ given in Fig.~\ref{table:matAmmetteP-pp} }
 \label{fig:GcM}
 \end{figure}
 

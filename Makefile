@@ -1,5 +1,5 @@
 pdf:
-	latexmk -pdf -bibtex -f -silent fixed-topology-ppp
+	latexmk -pdf -bibtex -f fixed-topology-ppp
 
 
 
