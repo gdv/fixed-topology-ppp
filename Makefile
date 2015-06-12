@@ -1,4 +1,4 @@
-TARGETS = fixed-topology-persistent.pdf
+TARGETS = fixed-topology-ppp.pdf
 LATEXMK = latexmk -recorder -use-make
 
 pdf: $(TARGETS)
