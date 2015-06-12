@@ -1,26 +1,53 @@
-\documentclass{article}
-\usepackage[affil-it]{authblk}
-\usepackage{graphicx}
-\usepackage[space]{grffile}
-\usepackage{latexsym}
-\usepackage{amsfonts,amsmath,amssymb}
+\documentclass{scrartcl}
+\pdfoutput=1
+% \usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage[algoruled,linesnumbered,noend]{algorithm2e}
+\usepackage{relsize}
+\newcommand{\mycommentsty}[1]{{\relsize{-1}\texttt{\textls[-10]{#1}}}}
+\SetCommentSty{mycommentsty}
+% \usepackage{enumitem}
+\usepackage{cite}
+\usepackage{multirow}
 \usepackage{url}
-\usepackage[utf8]{inputenc}
-\usepackage{hyperref}
-\hypersetup{colorlinks=false,pdfborder={0 0 0}}
-\usepackage{textcomp}
-\usepackage{longtable}
-\usepackage{multirow,booktabs}
+\usepackage{xspace}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[affil-it]{authblk}
+% REMOVE BEFORE SUBMISSION - begin part
+\usepackage{verbatim}
+\setlength{\marginparwidth}{1em}
+\setlength{\marginparsep}{2ex}
+\usepackage{textcomp}\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{decorations}
+\usetikzlibrary{positioning,patterns}
 
 
+\newcommand{\mathfrc}[1]{\text{\fontfamily{frc}\selectfont#1}}
+
+\usepackage{booktabs}
+\newcommand{\otoprule}{\midrule[\heavyrulewidth]}
+\newcommand{\lmidrule}{\midrule[.5\heavyrulewidth]}
+\usepackage{tabularx}
+\newcolumntype{W}{>{\raggedleft\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\usepackage{array}
+
+
+\DeclareMathOperator{\pop}{pop}
 
 \begin{document}
+\input{header}
 
 \title{Fixed-Topology Persistent Phylogeny}
 
 \author{Gianluca Della Vedova}
 \affil{Affiliation not available}
-
 
 \date{\today}
 
