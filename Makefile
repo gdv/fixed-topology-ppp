@@ -1,9 +1,6 @@
-TARGETS = fixed-topology-ppp.pdf
-LATEXMK = latexmk -recorder -use-make
+pdf:
+	latexmk -pdf -bibtex -f -silent fixed-topology-ppp
 
-pdf: $(TARGETS)
 
-bibs=$(wildcard *.bib)
-figs=$(wildcard *.png)
-%.pdf : %.tex $(bibs) $(figs)
-	$(LATEXMK) -pdf $<
+
+PHONY: pdf
