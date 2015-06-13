@@ -51,7 +51,7 @@ A first generalization in the literature allows for more states
 (but keeping the infinite sites assumption).
 In the general case, the problem is NP-hard~\cite{BFW92}, but it has
 an algorithm parameterized by the number of
-states~\cite{DBLP:journals/siamcomp/Fernandez-BacaL03,kannan1997fast}.
+states~\cite{DBLP:journals-siamcomp-Fernandez-BacaL03,kannan1997fast}.
 The special cases when there are three or four possible states have more
 efficient algorithms~\cite{dress1992convex,kannan1994inferring,gysel2012constructing}.
 
@@ -81,15 +81,15 @@ efficiency (in fact, more general models such as the Dollo and the Camin-Sokal
 models are NP-hard~\cite{felsenstein:inferring-phylogenies}).
 The problem of constructing  phylogenies where the deviations from perfect phylogeny are  small
 has been tackled under the name of near perfect
-phylogeny~\cite{DBLP:journals/siamcomp/Fernandez-BacaL03} or near perfect
-phylogeny  haplotyping  problems~\cite{DBLP:conf/ismb/SatyaMAPB06}.
+phylogeny~\cite{DBLP:journals-siamcomp-Fernandez-BacaL03} or near perfect
+phylogeny  haplotyping  problems~\cite{DBLP:conf-ismb-SatyaMAPB06}.
 Especially the impossibility of losing a character that has been previously
 acquired is too restrictive, resulting in more elaborated models,
 such as the persistent character~\cite{Pr1} and the General Character
-Compatibility~\cite{DBLP:conf/isbra/ManuchPG11,mavnuch2009generalised}.
+Compatibility~\cite{DBLP:conf-isbra-ManuchPG11,mavnuch2009generalised}.
 
 More precisely, the  Persistent Perfect Phylogeny
-model~\cite{DBLP:journals/tcs/BonizzoniBDT12} allows each character to be lost
+model~\cite{DBLP:journals-tcs-BonizzoniBDT12} allows each character to be lost
 (\ie{} going from state $1$ to $0$) in at most an edge of the phylogeny, while the
 General Character Compatibility imposes some restrictions on the possible
 mutations (that is on the possible states labeling the endpoints of an edge),
@@ -105,7 +105,7 @@ obtain a dataset that is compatible with a given topology.
 
 \subsection*{The persistent perfect phylogeny}
 
-Our approach follows~\cite{DBLP:journals/tcs/BonizzoniBDT12} to which we refer
+Our approach follows~\cite{DBLP:journals-tcs-BonizzoniBDT12} to which we refer
 the reader for a detailed discussion of PPP, while we give here
 only a cursory treatment.
 The input of the PPP problem is an  $n \times m$ binary matrix $M$ whose
@@ -121,7 +121,7 @@ In this case the edge $(x,y)$ is labeled by $c^{+}$.
 Conversely, $c$ is \emph{lost} in the edge $(x,y)$ if $y$ is a child of $x$ and
 the $c$ has state $1$ in $x$ and state $0$ in $y$.
 In the latter case the edge $(x,y)$ is labeled by $c^{-}$.
-For each character $c$, we allow at most one edge labeled by $c^{-}$~\cite{zeng,DBLP:journals/tcs/BonizzoniBDT12}.
+For each character $c$, we allow at most one edge labeled by $c^{-}$~\cite{zeng,DBLP:journals-tcs-BonizzoniBDT12}.
 % \vspace{.1in}
 % \noindent
 
@@ -211,7 +211,7 @@ pairs.
 % A completion is \emph{full} if all its conjugate pairs are completed.
 Notice that $M$ admits a persistent phylogeny  if
 and only if there exists a completion  of $M_e$ admitting a directed perfect
-phylogeny~\cite{DBLP:journals/tcs/BonizzoniBDT12}.
+phylogeny~\cite{DBLP:journals-tcs-BonizzoniBDT12}.
 
 
  %\begin{comment}
@@ -219,7 +219,7 @@ phylogeny~\cite{DBLP:journals/tcs/BonizzoniBDT12}.
 
 %\end{comment}
 
-A fundamental contribution of~\cite{DBLP:journals/tcs/BonizzoniBDT12}, building
+A fundamental contribution of~\cite{DBLP:journals-tcs-BonizzoniBDT12}, building
 upon~\cite{Sha}, is to frame the problem as a graph theory question.
 We briefly recall here the two graphs that are used in the description of the algorithm.
 
