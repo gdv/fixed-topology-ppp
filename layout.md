@@ -1,4 +1,3 @@
 0_abstract.tex
 2_Background.tex
 3_Minimum_Column_Removal.tex
-4_Minimum_Matrix_Editing.tex
