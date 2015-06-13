@@ -93,13 +93,16 @@ year = "2006",
 pages= "522--553" }
 
 @InProceedings{BFW92,
-  title =        "Two Strikes Against Perfect Phylogeny",
-  author =       "Bodlaender, Hans L. and Fellows, Micheal R. and
-                  Warnow, Tandy",
-  year =         1995,
-  booktitle = ICALP95,
-  volume =       937,
-  pages =        "17--26"
+AUTHOR = {Bodlaender, Hans L. and Fellows, Mike R. and Warnow, Tandy J.},
+     TITLE = {Two strikes against perfect phylogeny},
+ BOOKTITLE = {Automata, languages and programming ({V}ienna, 1992)},
+    SERIES = {Lecture Notes in Comput. Sci.},
+    VOLUME = {623},
+     PAGES = {273--283},
+ PUBLISHER = {Springer, Berlin},
+      YEAR = {1992},
+   MRCLASS = {92B10 (05C90 68Q25 92D40)},
+  MRNUMBER = {1250642 (94j:92003)},
 }
 
 @article{DBLP:journals-siamcomp-Fernandez-BacaL03,
@@ -338,4 +341,64 @@ Supplementary information: Supplementary data are available at Bioinformatics on
 	author = {Alimonti, Paola and Kann, Viggo},
 	year = {2000},
 	pages = {123--134}
+}
+
+
+@incollection {karp_reducibility_1972,
+    AUTHOR = {Karp, Richard M.},
+     TITLE = {Reducibility among combinatorial problems},
+ BOOKTITLE = {Complexity of computer computations ({P}roc. {S}ympos., {IBM}
+              {T}homas {J}. {W}atson {R}es. {C}enter, {Y}orktown {H}eights,
+              {N}.{Y}., 1972)},
+     PAGES = {85--103},
+ PUBLISHER = {Plenum, New York},
+      YEAR = {1972}
+}
+
+
+@book{garey_computer_1979,
+	title = {Computer and {Intractability}: {A} {Guide} to the {Theory} of {NP}-completeness},
+	publisher = {W. H. Freeman},
+	author = {Garey, M. R. and Johnson, D. S},
+	year = {1979}
+	}
+
+
+@article{gusfield_optimal_2004,
+	title = {Optimal, efficient reconstruction of phylogenetic networks with constrained recombination},
+	volume = {02},
+	issn = {0219-7200},
+	url = {http://www.worldscientific.com/doi/abs/10.1142/S0219720004000521},
+	doi = {10.1142/S0219720004000521},
+	abstract = {A phylogenetic network is a generalization of a phylogenetic tree, allowing structural properties that are not tree-like. In a seminal paper, Wang et al.1 studied the problem of constructing a phylogenetic network, allowing recombination between sequences, with the constraint that the resulting cycles must be disjoint. We call such a phylogenetic network a "galled-tree". They gave a polynomial-time algorithm that was intended to determine whether or not a set of sequences could be generated on galled-tree. Unfortunately, the algorithm by Wang et al.1 is incomplete and does not constitute a necessary test for the existence of a galled-tree for the data. In this paper, we completely solve the problem. Moreover, we prove that if there is a galled-tree, then the one produced by our algorithm minimizes the number of recombinations over all phylogenetic networks for the data, even allowing multiple-crossover recombinations. We also prove that when there is a galled-tree for the data, the galled-tree minimizing the number of recombinations is "essentially unique". We also note two additional results: first, any set of sequences that can be derived on a galled tree can be derived on a true tree (without recombination cycles), where at most one back mutation per site is allowed; second, the site compatibility problem (which is NP-hard in general) can be solved in polynomial time for any set of sequences that can be derived on a galled tree. Perhaps more important than the specific results about galled-trees, we introduce an approach that can be used to study recombination in general phylogenetic networks. This paper greatly extends the conference version that appears in an earlier work.8 PowerPoint slides of the conference talk can be found at our website.7},
+	number = {01},
+	urldate = {2015-06-03},
+	journal = {Journal of Bioinformatics and Computational Biology},
+	author = {Gusfield, Dan and Eddhu, Satish and Langley, Charles},
+	month = mar,
+	year = {2004},
+	keywords = {\_tablet},
+	pages = {173--213},
+	file = {Optimal,_efficient_reconstruction_of.pdf:/home/dellavedova/zotero/Papers/2004/Optimal,_efficient_reconstruction_of.pdf:application/pdf;Snapshot:/home/dellavedova/zotero/storage/VZFXE8P6/S0219720004000521.html:text/html}
+}
+
+
+@article{bonizzoni_explaining_2014,
+	title = {Explaining evolution via constrained persistent perfect phylogeny},
+	volume = {15},
+	copyright = {2014 Bonizzoni et al.; licensee BioMed Central Ltd.},
+	issn = {1471-2164},
+	url = {http://www.biomedcentral.com/1471-2164/15/S6/S10/abstract},
+	doi = {10.1186/1471-2164-15-S6-S10},
+	abstract = {The perfect phylogeny is an often used model in phylogenetics since it provides an efficient basic procedure for representing the evolution of genomic binary characters in several frameworks, such as for example in haplotype inference. The model, which is conceptually the simplest, is based on the infinite sites assumption, that is no character can mutate more than once in the whole tree. A main open problem regarding the model is finding generalizations that retain the computational tractability of the original model but are more flexible in modeling biological data when the infinite site assumption is violated because of e.g. back mutations. A special case of back mutations that has been considered in the study of the evolution of protein domains (where a domain is acquired and then lost) is persistency, that is the fact that a character is allowed to return back to the ancestral state. In this model characters can be gained and lost at most once. In this paper we consider the computational problem of explaining binary data by the Persistent Perfect Phylogeny model (referred as PPP) and for this purpose we investigate the problem of reconstructing an evolution where some constraints are imposed on the paths of the tree.},
+	language = {en},
+	number = {Suppl 6},
+	urldate = {2014-10-18},
+	journal = {BMC Genomics},
+	author = {Bonizzoni, Paola and Carrieri, Anna Paola and Vedova, Gianluca Della and Trucco, Gabriella},
+	month = oct,
+	year = {2014},
+	keywords = {fixed-parameter complexity, Perfect phylogeny, persistent perfect phylogeny},
+	pages = {S10},
+	file = {Bonizzoni et al. - 2014 - Explaining evolution via constrained persistent pe.pdf:/home/dellavedova/Documenti/Papers/2014/BMC Genomics/Bonizzoni et al. - 2014 - Explaining evolution via constrained persistent pe.pdf:application/pdf;Snapshot:/home/dellavedova/zotero/storage/S5EA96TP/S10.html:text/html}
 }

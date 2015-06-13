@@ -1,5 +1,89 @@
 \section*{Results and discussion}
 
+
+\subsection*{Species-Driven Phylogeny}
+
+It is a well-known fact that matrices admitting a galled tree are a
+subset of those admitting a persistent phylogeny~\cite{gusfield_optimal_2004}.
+In this section we will present the notion of species-driven phylogeny
+and we will show that the set of  matrices admitting a galled tree is
+properly contained in the set of matrices admitting a species-driven phylogeny.
+
+
+\begin{definition}
+\label{definition:species-driven}
+Let $T$ be a persistent phylogeny.
+Then $T$ is called \emph{species-driven} if there exists an ordering
+$(s_{1}, \ldots , s_{n})$ of all species of $T$ such that for edge $e_{j}$
+labeled by a negated character $c_{j}^{-}$  and lying on the path from
+the species $s_{i}$ to the root of $T$, there is a species $s_{h}$
+with $h < i$ such that the path from $s_{h}$ to the root of $T$
+traverse the edge labeled $c_{j}^{+}$.
+\end{definition}
+
+In the species-driver persistent perfect phylogeny the basic idea is that, given  a binary matrix, we ask to build a tree  $T$ and an ordering of species  of the input matrix, such that if a character is lost by a species $s_i$ in the ordering, the (positive) character must be along the path from the root to a species $s_j$ such that $j < i$, i.e. $s_j$ occurs before $s_i$ in the ordering.
+
+The exponential-time algorithms for persistent
+phylogeny~\cite{DBLP:journals-tcs-BonizzoniBDT12,bonizzoni_explaining_2014}
+can be applied also for this problem, by providing a procedure to test
+if a given solution is also a species-driven.
+
+In fact, those algorithm are based on computing all possible sequences
+of characters corresponding to a visit of the tree $T$.
+The more efficient algorithm of~\cite{bonizzoni_explaining_2014} is
+able to speed up the computation when the conflict graph has no edge:
+in this case the solution consists of computing the perfect phylogeny
+on some submatrices.
+Since the perfect phylogeny of a matrix is unique, this strategy does
+not skip any possible species-driven phylogeny.
+
+But Definition~\ref{definition:species-driven} suggest a test that is
+very expensive to compute, since it requires (in the worst case) to
+compute all possible permutations of the species.
+By provide now an alternative definition: in the following we will
+prove that those two definitions are equivalent.
+
+
+\begin{definition}
+\label{definition:species-driven-2}
+Let $T$ be a persistent phylogeny.
+Then $T$ is called \emph{species-driven} if there exists a permutation
+$(d_{1}, \ldots , d_{k})$ of all characters that are negated in $T$
+such that for each $d_{i}$ there is a species $x_{i}$ whose path from
+the root of $T$ to $x_{i}$ traverses the edge $d_{i}^{+}$ but does not
+traverse any edge $d_{j}^{-}$ with $j \le i$.
+\end{definition}
+
+\begin{lemma}
+\label{lemma:equivalent-species-driven}
+Definitions~\ref{definition:species-driven}
+and~\ref{definition:species-driven-2} are equivalent.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+The importance of Definition~\ref{definition:species-driven-2} is that
+a much simpler test to determine if a solution computed by the
+algorithm of~\cite{bonizzoni_explaining_2014} is actually a
+species-driven phylogeny.
+
+\begin{lemma}
+\label{lemma:same-order-of-algorithm-for-species-driven-test}
+Let $T$ be a species-driven phylogeny and let $(d_{1}, \ldots,
+d_{k})$ be the permutation of all characters that are negated in $T$
+that satisfies Definition~\ref{definition:species-driven-2}.
+Then there exists a visit of $T$ that traverses in order the edges
+labeled by $d_{1}^{-}, \ldots, d_{k}^{-}$.
+\end{lemma}
+
+\begin{proof}
+TODO
+\end{proof}
+
+\subsection*{Minimum Column Removal}
+
 A simple formulation of our problem assumes that we have in input a
 topology $T$ with $n$ leaves and a matrix $M$ with $n$ rows.
 In this case we already know that the species of $M$ labels the leaves
@@ -9,8 +93,6 @@ We have three different formulation of the problem according to the
 fact that we want a perfect phylogeny, a persistent phylogeny or a
 species-driven phylogeny.
 
-
-\subsection*{Minimum Column Removal}
 
 In this paper we will consider only trees where the leaves are labeled
 by the species, and no other node is labeled.
@@ -32,19 +114,16 @@ algorithms for independent set are known.
 
 \begin{definition}
 \label{definition:perfect-problem}
-Given a $n\times m$ matrix $M$ and a tree $T$ with $n$ leaves, the
+Given a $n\times m$ matrix $M$ and a tree $T$ with $n$ leaves and $e$
+edges, the
 \emph{Minimum Column Removal Fixed-Topology Perfect Phylogeny} (Min
-C-Perf) problem asks for a smallest set $X$ of columns of $M$ such
+C-Perf) problem asks for a set $X$ of $e$ columns of $M$ such
 that removing $X$ from $M$ results in a matrix that is realized by a
 perfect phylogeny on $T$.
 \end{definition}
 
 
-The Min C-Perf problem is APX-hard~\cite{ausiello_approximate_1995}
-(that is, not only it is NP-hard
-but it cannot be solved within an arbitrarily small approximation
-ratio by a polynomial-time algorithm).
-
+The Min C-Perf problem is NP-hard~\cite{karp_reducibility_1972}.
 We sketch here a reduction from Min Independent Set on cubic graphs,
 which is already known to be APX-hard~\cite{alimonti_apx-completeness_2000}.
 Let $G=(V,E)$ be a cubic graph.
@@ -58,11 +137,41 @@ except for characters $c_{i}$ and $c_{j}$.
 The resulting matrix has $|V|$ characters and $3|V|+1$ rows.
 It is immediate to notice that each pair of characters $(c_{i},
 c_{j})$ are conflicting, while no other pairs of characters are conflicting.
-Each column of $M$ contains exactly $4$ ones, therefore a tree $T$
-consisting of a root and a bunch for $4$-long paths realized the
-remaining columns of $M$.
+Each column of $M$ contains exactly $4$ ones, therefore let $T$ be a tree
+consisting of a root and $k$ $P_{5}$s (paths consisting of $5$
+vertices and $4$ edges) all starting from the root of $T$.
+It is immediate to prove that if $G$ has an independent set of size
+$k$, then $T$ realizes a submatrix of $M$ with $k$ columns.
 
 
+
+\begin{definition}
+\label{definition:persistent-problem}
+Given a $n\times m$ matrix $M$ and a tree $T$ with $n$ leaves and $e$
+edges, the
+\emph{Minimum Column Removal Fixed-Topology Persistent Phylogeny} (Min
+C-Pers) problem asks for a smallest set $X$ columns of $M$ such
+that removing $X$ from $M$ results in a matrix that is realized by a
+persistent phylogeny on $T$.
+\end{definition}
+
+Notice that the Min C-Pers problem inherits the NP-hardness of Min
+C-Perf, but it is defined as an actual optimization
+problem~\cite{ausiello_approximate_1995}, while the Min C-Perf problem
+is a decision problem~\cite{garey_computer_1979}.
+In fact, it is not possible to define  Min C-Perf as an optimization
+problem, since the number of columns to keep is equal to the number of
+edges of $T$.
+
+\begin{definition}
+\label{definition:species-driven-problem}
+Given a $n\times m$ matrix $M$ and a tree $T$ with $n$ leaves and $e$
+edges, the
+\emph{Minimum Column Removal Fixed-Topology Species-Driven Phylogeny} (Min
+C-SD) problem asks for a smallest set $X$ columns of $M$ such
+that removing $X$ from $M$ results in a matrix that is realized by a
+species-driven persistent phylogeny on $T$.
+\end{definition}
 
 
 In the case of persistent phylogeny this approach cannot be used since there is no induced submatrix.
@@ -228,7 +337,7 @@ The following matrix $\mathcal M$ admits a pp tree but has no path-sequence.
 
 \begin{table}
 \centering
-\begin{tabularx}{1.0\linewidth}[c]{c|cccccccccccccccc}
+\begin{tabular}{c|cccccccccccccccc}
     $s/c$ & $c_1$ & $c_2$ & $c_3$ & $c_4$ & $c_5$ & $c_6$ & $c_7$ & $c_8$ & $c_9$ & $c_{10}$ &
 $c_{11}$ & $c_{12}$ & $c_{13}$ & $c_{14}$ & $c_{15}$ & $c_{16}$\\\hline
 1 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
@@ -239,7 +348,7 @@ $c_{11}$ & $c_{12}$ & $c_{13}$ & $c_{14}$ & $c_{15}$ & $c_{16}$\\\hline
 6 & 1 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
 7 & 0 & 1 & 1 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
 8 & 0 & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
-\end{tabularx}
+\end{tabular}
 \caption{A binary matrix  $\mathcal M$ on $8$ species and $16$
   characters that has a persistent phylogeny, but no species-driven phylogeny}
 \label{table:matAmmetteP-pp}
