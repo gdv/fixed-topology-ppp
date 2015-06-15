@@ -350,8 +350,38 @@ labeled by $d_{1}^{-}, \ldots, d_{k}^{-}$.
 \end{lemma}
 
 \begin{proof}
-TODO
+Since  $(d_{1}, \ldots, d_{k})$ is the permutation of the characters
+that are negated in $T$ that satisfies
+Definition~\ref{definition:species-driven-2}, we can associate to each
+$d_{i}$ a species $s_{i}$ such that the path from the leaf labeled
+$s_{i}$ to the root of $T$ traverses the edge labeled $d_{i}^{+}$, but
+does not traverse any edge labeled  $d_{j}^{-}$ with $j\le i$.
+This property implies that, for each $i$,  none of the edges labeled
+$d_{j}^{-}$ with $j\le i$ lies on the path from the root of $T$ to
+$d_{j}^{-}$.
+
+Therefore we can build a visit of $T$ by first visiting the path of
+$T$ to $d_{1}^{-}$, then the path of $T$ to $d_{2}^{-}$ (excluding the
+edges that have already been visited), going on for all edges labeled
+by a negated character.
+Finally, we add to the visit all edges of $T$ that have not been
+visited yet.
+It is immediate to notice that we have constructed a visit of $T$.
 \end{proof}
+
+Since the algorithm for persistent
+phylogeny~\cite{bonizzoni_explaining_2014} explores all possible
+visits of a tree $T$  (recall that a visit is basically a permutation
+of the edges of $T$),
+Lemma~\ref{lemma:same-order-of-algorithm-for-species-driven-test}
+suggests a simple test to determine whether a permutation of the label
+of the $T$ satisfies the notion of species-driven phylogeny.
+In fact, it suffices to test, for each $i$, if the subtree of $T$
+rooted at the child of $d_{i}^{+}$ has a leaf that is not in the subtree
+of $T$ root at the child of  $d_{i}^{-}$.
+It is immediate to notice that any such leaf would satisfy the
+property of the species $s_{i}$ of Definition~\ref{definition:species-driven-2}.
+
 
 \subsection*{Minimum Column Removal}
 
